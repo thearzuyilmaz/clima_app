@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:clima_app/screens/location_screen.dart';
 import 'package:clima_app/services/weather.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -9,8 +10,8 @@ class LoadingScreen extends StatefulWidget {
 
 class _LoadingScreenState extends State<LoadingScreen> {
   void getData() async {
-    WeatherModel weathermodel = WeatherModel();
-    var weatherData = await weathermodel.getWeatherData();
+    WeatherModel weatherModel = WeatherModel();
+    var weatherData = await weatherModel.getWeatherData();
 
     // Navigating to another page taking the data from this page
     Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -26,6 +27,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(
+        child: SpinKitRotatingCircle(
+          color: Colors.white,
+          size: 50.0,
+        ),
+      ),
+    );
   }
 }
